@@ -10,7 +10,8 @@ requires-python = ">=3.9"
 dependencies = [
     "django (==4.2.17)",
     "djangorestframework (>=3.16.0,<4.0.0)",
-    "mysqlclient (>=2.2.7,<3.0.0)"
+    "mysqlclient (>=2.2.7,<3.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)"
 ]
 
 
@@ -22,3 +23,6 @@ build-backend = "poetry.core.masonry.api"
 black = "^25.1.0"
 flake8 = "^7.2.0"
 
+[tool.black]
+line-length = 120
+skip-string-normalization = true
