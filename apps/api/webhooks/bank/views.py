@@ -12,14 +12,10 @@ class BankWebhookView(APIView):
         - Запрос изменения баланса организации.
     """
 
-    def post(self, request):
-        # Обычно на адрес приема идет несколько типов хуков,
-        # поэтому в теле основного метода была бы логика вызова разных обработчиков в зависимости от запроса.
-        return self._payment_webhook(request)
+    serializer_class = PaymentSerializer
 
-    def _payment_webhook(self, request):
-        """Запрос изменения баланса организации."""
-        serializer = PaymentSerializer(data=request.data)
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         payment_webhook_processing(serializer.validated_data)
